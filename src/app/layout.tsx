@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { Figtree } from "next/font/google";
+import { cn } from "@/lib/utils";
+import SmoothScroll from "@/components/SmoothScroll";
+
+// Brand primary typeface. It also backs --font-manrope (see globals.css), which the
+// component-library headings and a few scenes still reference by that name.
+const figtree = Figtree({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Tezzeract Storage — Pay-as-you-go file storage",
@@ -13,8 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body>{children}</body>
+    <html lang="en" className={cn("dark font-sans", figtree.variable)}>
+      <body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }
